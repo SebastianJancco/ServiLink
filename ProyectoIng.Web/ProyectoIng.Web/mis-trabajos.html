@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Mis Trabajos en Servilink: gestiona tus servicios técnicos pendientes, en proceso y finalizados en Cusco Metropolitano con tablero Kanban interactivo y vista lista.">
+  <title>Mis Trabajos · Servilink (Cusco)</title>
+
+  <!-- Google Fonts: Bricolage Grotesque & Figtree -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos del Panel de Trabajador (Autónomo, con tokens Servilink y tipografía directa) -->
+  <link rel="stylesheet" href="trabajador-panel.css">
+</head>
+<body>
+  <!-- Salto rápido para accesibilidad de teclado -->
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <!-- Header solicitado por el usuario -->
+  <header class="top">
+    <div class="wrap">
+
+      <!-- Logo -->
+      <a class="logo" href="Index.html">
+        <i aria-hidden="true"></i>
+        Servilink
+        <small>Panel técnico</small>
+      </a>
+
+      <!-- Navegación -->
+      <nav aria-label="Principal">
+        <a href="inicio trabajador.html">Inicio</a>
+        <a href="bolsa-solicitudes.html">Bolsa de Trabajos</a>
+        <a href="mis-trabajos.html" aria-current="page">Mis Trabajos</a>
+        <a href="mi perfil.html">Mi Perfil</a>
+      </nav>
+
+      <!-- Usuario -->
+      <div class="me">
+        <span class="av" aria-hidden="true">WQ</span>
+
+        <div>
+          <span>Bienvenido</span>
+          <b>Wilber Quispe</b>
+        </div>
+      </div>
+
+      <!-- Cerrar Sesión -->
+      <a class="logout-btn" href="Index.html" title="Cerrar sesión">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        <span>Cerrar sesión</span>
+      </a>
+
+    </div>
+  </header>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Compacto con Métricas de Resumen -->
+  <header class="panel-hero">
+    <div class="wrap panel-hero-inner">
+      <span class="panel-hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        </svg>
+        Panel de Gestión Operativa
+      </span>
+
+      <h1>Mis <span class="marker">trabajos</span></h1>
+      <p class="panel-hero-lead">
+        Supervisa en tiempo real el ciclo de tus atenciones técnicas en Cusco: desde propuestas enviadas hasta servicios en ejecución y entregas con conformidad.
+      </p>
+
+      <!-- 3 Métricas Resumen -->
+      <section class="metrics-grid" aria-label="Resumen de estado de trabajos">
+        <!-- Pendientes -->
+        <article class="metric-card is-plan">
+          <div class="metric-label">
+            <span class="metric-dot" aria-hidden="true"></span>
+            Pendientes
+          </div>
+          <div id="metric-pending" class="metric-value">0</div>
+          <p class="metric-desc">Propuestas enviadas o por coordinar</p>
+        </article>
+
+        <!-- En Proceso -->
+        <article class="metric-card is-sun">
+          <div class="metric-label">
+            <span class="metric-dot" aria-hidden="true"></span>
+            En Proceso
+          </div>
+          <div id="metric-in-progress" class="metric-value">0</div>
+          <p class="metric-desc">Servicios técnicos en ejecución</p>
+        </article>
+
+        <!-- Terminados -->
+        <article class="metric-card is-ok">
+          <div class="metric-label">
+            <span class="metric-dot" aria-hidden="true"></span>
+            Terminados
+          </div>
+          <div id="metric-completed" class="metric-value">0</div>
+          <p class="metric-desc">Servicios concluidos con éxito</p>
+        </article>
+      </section>
+    </div>
+  </header>
+
+  <!-- Contenido Principal: Barra de Control y Vistas -->
+  <main id="contenido" class="wrap">
+    <!-- Barra de control: Selector de vista e info rápida -->
+    <div class="jobs-control-bar">
+      <div>
+        <h2 style="font-size: 1.5rem; margin: 0;">Flujo de Servicios</h2>
+        <p style="margin: 0.2rem 0 0; color: var(--muted); font-size: 0.9rem;">
+          Arrastra tarjetas entre columnas o usa los botones accesibles por teclado.
+        </p>
+      </div>
+
+      <!-- Toggle de vista: Tablero vs Lista -->
+      <div class="view-toggle-group" role="toolbar" aria-label="Seleccionar modo de visualización">
+        <button 
+          type="button" 
+          id="view-kanban-btn" 
+          class="view-toggle-btn is-active" 
+          aria-pressed="true" 
+          aria-controls="kanban-view"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="18" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="10" rx="1"></rect>
+          </svg>
+          Tablero Kanban
+        </button>
+        <button 
+          type="button" 
+          id="view-list-btn" 
+          class="view-toggle-btn" 
+          aria-pressed="false" 
+          aria-controls="list-view"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          Vista Lista
+        </button>
+      </div>
+    </div>
+
+    <!-- 1. VISTA TABLERO (KANBAN DE 3 COLUMNAS) -->
+    <div id="kanban-view" class="kanban-board kanban-board-mobile-snap" role="region" aria-label="Tablero Kanban de trabajos">
+      <!-- Columna 1: Pendientes -->
+      <section 
+        id="column-pending" 
+        class="kanban-column is-pending" 
+        data-status="pendiente" 
+        aria-labelledby="col-pending-heading"
+      >
+        <div class="kanban-column-header">
+          <h3 id="col-pending-heading" class="kanban-column-title">
+            <span aria-hidden="true" style="color: var(--plan);">●</span>
+            Pendientes
+          </h3>
+          <span id="count-pending" class="kanban-counter-badge" aria-label="Cantidad de trabajos pendientes">0</span>
+        </div>
+        <div id="column-pending-cards" class="kanban-cards-list">
+          <!-- Tarjetas pendientes inyectadas por JS -->
+        </div>
+      </section>
+
+      <!-- Columna 2: En Proceso -->
+      <section 
+        id="column-in-progress" 
+        class="kanban-column is-in-progress" 
+        data-status="en-proceso" 
+        aria-labelledby="col-progress-heading"
+      >
+        <div class="kanban-column-header">
+          <h3 id="col-progress-heading" class="kanban-column-title">
+            <span aria-hidden="true" style="color: var(--sun);">●</span>
+            En Proceso
+          </h3>
+          <span id="count-in-progress" class="kanban-counter-badge" aria-label="Cantidad de trabajos en proceso">0</span>
+        </div>
+        <div id="column-in-progress-cards" class="kanban-cards-list">
+          <!-- Tarjetas en proceso inyectadas por JS -->
+        </div>
+      </section>
+
+      <!-- Columna 3: Terminados -->
+      <section 
+        id="column-completed" 
+        class="kanban-column is-completed" 
+        data-status="terminado" 
+        aria-labelledby="col-completed-heading"
+      >
+        <div class="kanban-column-header">
+          <h3 id="col-completed-heading" class="kanban-column-title">
+            <span aria-hidden="true" style="color: var(--ok);">●</span>
+            Terminados
+          </h3>
+          <span id="count-completed" class="kanban-counter-badge" aria-label="Cantidad de trabajos terminados">0</span>
+        </div>
+        <div id="column-completed-cards" class="kanban-cards-list">
+          <!-- Tarjetas terminadas inyectadas por JS -->
+        </div>
+      </section>
+    </div>
+
+    <!-- 2. VISTA LISTA (TABLA RESPONSIVE SIN MANEJO DE DINERO) -->
+    <div id="list-view" class="list-view" hidden role="region" aria-label="Listado tabular de trabajos">
+      <!-- Filtro por estado para la tabla -->
+      <div class="table-filter-bar">
+        <label for="table-filter-status">Filtrar por estado:</label>
+        <select id="table-filter-status" class="filter-select" style="max-width: 240px;">
+          <option value="todos">Todos los estados</option>
+          <option value="pendiente">Solo Pendientes</option>
+          <option value="en-proceso">Solo En proceso</option>
+          <option value="terminado">Solo Terminados</option>
+        </select>
+      </div>
+
+      <!-- Tabla accesible -->
+      <div class="table-wrapper">
+        <table class="jobs-table">
+          <caption>Historial y seguimiento técnico de trabajos registrados en Servilink</caption>
+          <thead>
+            <tr>
+              <th scope="col">Servicio / Oficio</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Distrito</th>
+              <th scope="col">Fecha / Horario</th>
+              <th scope="col">Modalidad</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Acción</th>
+            </tr>
+          </thead>
+          <tbody id="jobs-table-body">
+            <!-- Filas inyectadas dinámicamente con JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal Accesible para Ver Detalle Técnico de Trabajo (<dialog>) -->
+  <dialog id="modal-job-detail" class="modal-dialog" aria-labelledby="detail-modal-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="detail-modal-title">Ficha Técnica de Conformidad</h3>
+        <button type="button" id="btn-close-job-detail" class="modal-close-btn" aria-label="Cerrar modal de detalle">
+          &times;
+        </button>
+      </div>
+      <div id="job-detail-content">
+        <!-- Contenido inyectado dinámicamente -->
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Contenedor accesible para toasts flotantes -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Footer general de Servilink -->
+  <footer class="site-footer">
+    <div class="wrap footer-wrap">
+      <a class="brand" href="Index.html" aria-label="Servilink, inicio">
+        <span class="brand-icon" aria-hidden="true"></span>
+        Servilink
+      </a>
+      <p>Prototipo académico · Ingeniería Web · Proyecto Semestral · Universidad Continental</p>
+    </div>
+  </footer>
+
+  <!-- Lógica y persistencia del panel de trabajador -->
+  <script src="trabajador-panel.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mi perfil · Servilink</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="trabajador-panel.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <header class="top">
+    <div class="wrap">
+
+      <!-- Logo -->
+      <a class="logo" href="Index.html">
+        <i aria-hidden="true"></i>
+        Servilink
+        <small>Panel técnico</small>
+      </a>
+
+      <!-- Navegación -->
+      <nav aria-label="Principal">
+        <a href="inicio trabajador.html">Inicio</a>
+        <a href="bolsa-solicitudes.html">Bolsa de Trabajos</a>
+        <a href="mis-trabajos.html">Mis Trabajos</a>
+        <a href="mi perfil.html" aria-current="page">Mi Perfil</a>
+      </nav>
+
+      <!-- Usuario -->
+      <div class="me">
+        <span class="av" aria-hidden="true">WQ</span>
+
+        <div>
+          <span>Bienvenido</span>
+          <b>Wilber Quispe</b>
+        </div>
+      </div>
+
+      <!-- Cerrar Sesión -->
+      <a class="logout-btn" href="Index.html" title="Cerrar sesión">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        <span>Cerrar sesión</span>
+      </a>
+
+    </div>
+  </header>
+
+  <!-- Hero del Perfil -->
+  <header class="panel-hero">
+    <div class="wrap panel-hero-inner">
+      <span class="panel-hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        Perfil del Técnico
+      </span>
+
+      <h1>Wilber <span class="marker">Quispe</span></h1>
+      <p class="panel-hero-lead">Gasfitería e instalaciones · Técnico verificado</p>
+
+      <div class="metrics-grid" aria-label="Resumen de perfil" style="max-width: 600px;">
+        <article class="metric-card is-plan">
+          <div class="metric-label">
+            <span class="metric-dot" aria-hidden="true"></span>
+            Calificación
+          </div>
+          <div class="metric-value">★ 4.9</div>
+          <p class="metric-desc">32 reseñas de clientes</p>
+        </article>
+        <article class="metric-card is-sun">
+          <div class="metric-label">
+            <span class="metric-dot" aria-hidden="true"></span>
+            Experiencia
+          </div>
+          <div class="metric-value">+8 años</div>
+          <p class="metric-desc">En el rubro técnico</p>
+        </article>
+        <article class="metric-card is-ok">
+          <div class="metric-label">
+            <span class="metric-dot" aria-hidden="true"></span>
+            Trabajos completados
+          </div>
+          <div class="metric-value">127</div>
+          <p class="metric-desc">Servicios entregados</p>
+        </article>
+      </div>
+    </div>
+  </header>
+
+  <!-- Formulario de Perfil -->
+  <main id="main">
+    <div class="wrap" style="padding: 2.5rem 0 4rem;">
+      <form action="#" method="post" class="modal-form" style="max-width: 900px; margin: 0 auto;">
+        <section style="margin-bottom: 2rem;">
+          <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">Datos de contacto</h2>
+          <p style="color: var(--muted); margin-bottom: 1.5rem;">Así te encuentran y te escriben los clientes.</p>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre" class="form-label">Nombre completo</label>
+              <input type="text" id="nombre" name="nombre" class="form-input" value="Wilber Quispe Huamán">
+            </div>
+            <div class="form-group">
+              <label for="correo" class="form-label">Correo electrónico</label>
+              <input type="email" id="correo" name="correo" class="form-input" value="wilber.quispe@servilink.com">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tel" class="form-label">Teléfono / WhatsApp</label>
+              <input type="text" id="tel" name="telefono" class="form-input" value="+51 987 654 321">
+            </div>
+            <div class="form-group">
+              <label for="esp" class="form-label">Especialidad principal</label>
+              <select id="esp" name="especialidad" class="form-select">
+                <option selected>Gasfitería e Instalaciones</option>
+                <option>Electricidad y Tableros</option>
+                <option>Cómputo y Redes WiFi</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="exp" class="form-label">Años de experiencia</label>
+            <input type="text" id="exp" name="experiencia" class="form-input" value="+8 años">
+          </div>
+        </section>
+
+        <section style="margin-bottom: 2rem;">
+          <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">Zonas donde trabajas</h2>
+          <p style="color: var(--muted); margin-bottom: 1.5rem;">Marca las zonas donde atiendes solicitudes.</p>
+          
+          <div class="form-group">
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <label class="chip" style="position: relative; display: inline-flex;">
+                <input type="checkbox" name="zonas" value="centro" checked style="position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer;">
+                <span style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.1rem; border-radius: 999px; border: 2px solid var(--ok); background: var(--ok-bg); font-weight: 600; color: var(--ok);">Zona Centro</span>
+              </label>
+              <label class="chip" style="position: relative; display: inline-flex;">
+                <input type="checkbox" name="zonas" value="norte" checked style="position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer;">
+                <span style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.1rem; border-radius: 999px; border: 2px solid var(--ok); background: var(--ok-bg); font-weight: 600; color: var(--ok);">Zona Norte</span>
+              </label>
+              <label class="chip" style="position: relative; display: inline-flex;">
+                <input type="checkbox" name="zonas" value="sur" style="position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer;">
+                <span style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.1rem; border-radius: 999px; border: 2px solid var(--line); font-weight: 600; color: var(--muted);">Zona Sur</span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section style="margin-bottom: 2rem;">
+          <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">Mis trabajos</h2>
+          <p style="color: var(--muted); margin-bottom: 1.5rem;">Sube fotos de trabajos reales para que los clientes confíen más en ti.</p>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div style="aspect-ratio: 4/3; border-radius: 16px; position: relative; overflow: hidden; background: linear-gradient(135deg, var(--brand), var(--hero)); display: flex; align-items: end; padding: 0.8rem;">
+              <b style="position: relative; color: #fff; font: 700 0.95rem var(--font-display);">Cambio de tubería</b>
+            </div>
+            <label style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem; text-align: center; aspect-ratio: 4/3; border: 2px dashed var(--line); border-radius: 16px; cursor: pointer; color: var(--muted); font-size: 0.88rem; padding: 0.6rem; transition: border-color 0.2s, background 0.2s;">
+              <input type="file" name="foto" accept="image/png,image/jpeg" style="position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; cursor: pointer;">
+              <span style="font: 800 1.8rem/1 var(--font-display); color: var(--brand);">+</span>
+              <strong style="color: var(--ink); font-weight: 600;">Subir una foto</strong>
+              <span>JPG o PNG, hasta 5 MB</span>
+            </label>
+          </div>
+        </section>
+
+        <div class="modal-actions" style="justify-content: flex-end; padding-top: 1rem; border-top: 1px solid var(--line); margin-top: 1.5rem;">
+          <button type="submit" class="button" style="background: var(--sun); color: var(--sun-ink);">Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-wrap">
+      <a class="brand" href="Index.html" aria-label="Servilink, inicio">
+        <span class="brand-icon" aria-hidden="true"></span>
+        Servilink
+      </a>
+      <p>Prototipo académico · Ingeniería Web · Proyecto Semestral · Universidad Continental</p>
+    </div>
+  </footer>
+</body>
+</html>

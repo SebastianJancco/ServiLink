@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Panel del trabajador · Servilink</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="trabajador-panel.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <header class="top">
+    <div class="wrap">
+
+      <!-- Logo -->
+      <a class="logo" href="Index.html">
+        <i aria-hidden="true"></i>
+        Servilink
+        <small>Panel técnico</small>
+      </a>
+
+      <!-- Navegación -->
+      <nav aria-label="Principal">
+        <a href="inicio trabajador.html" aria-current="page">Inicio</a>
+        <a href="bolsa-solicitudes.html">Bolsa de Trabajos</a>
+        <a href="mis-trabajos.html">Mis Trabajos</a>
+        <a href="mi perfil.html">Mi Perfil</a>
+      </nav>
+
+      <!-- Usuario -->
+      <div class="me">
+        <span class="av" aria-hidden="true">WQ</span>
+
+        <div>
+          <span>Bienvenido</span>
+          <b>Wilber Quispe</b>
+        </div>
+      </div>
+
+      <!-- Cerrar Sesión -->
+      <a class="logout-btn" href="Index.html" title="Cerrar sesión">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        <span>Cerrar sesión</span>
+      </a>
+
+    </div>
+  </header>
+
+  <!-- Hero del Panel con Métricas -->
+  <header class="panel-hero">
+    <div class="wrap panel-hero-inner">
+      <span class="panel-hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        </svg>
+        Panel de Control Operativo
+      </span>
+
+      <h1>Hola, <span class="marker">Wilber</span></h1>
+      <p class="panel-hero-lead">
+        Esto es lo que te espera hoy y las solicitudes nuevas de tu zona.
+      </p>
+
+      <!-- 3 Métricas Resumen -->
+      <section class="metrics-grid" aria-label="Resumen de actividad">
+        <article class="metric-card is-plan">
+          <div class="metric-label">
+            <span class="metric-dot" aria-hidden="true"></span>
+            Trabajos este mes
+          </div>
+          <div class="metric-value">12</div>
+          <p class="metric-desc">3 más que la semana pasada</p>
+        </article>
+
+        <article class="metric-card is-sun">
+          <div class="metric-label">
+            <span class="metric-dot" aria-hidden="true"></span>
+            Calificación
+          </div>
+          <div class="metric-value">★ 4.9</div>
+          <p class="metric-desc">Según 32 reseñas</p>
+        </article>
+
+        <article class="metric-card is-ok">
+          <div class="metric-label">
+            <span class="metric-dot" aria-hidden="true"></span>
+            Disponibilidad
+          </div>
+          <div class="metric-value">Activo</div>
+          <p class="metric-desc">Recibiendo solicitudes</p>
+        </article>
+      </section>
+    </div>
+  </header>
+
+  <!-- Disponibilidad -->
+  <section class="requests-section" aria-labelledby="avail-heading">
+    <div class="wrap">
+      <div id="avail-heading" class="avail" style="max-width: 520px; margin: 0 auto;">
+        <h2>¿Estás libre hoy?</h2>
+        <div class="avail-toggle" role="group" aria-label="Disponibilidad hoy">
+          <button type="button" class="toggle-btn is-on" id="avail-on" aria-pressed="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span>Activar</span>
+          </button>
+          <button type="button" class="toggle-btn" id="avail-off" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+            <span>Pausar</span>
+          </button>
+        </div>
+        <p class="avail-status"><span class="on">Los clientes ven que estás libre y pueden escribirte.</span><span class="off">Pausado: no aparecerás como disponible hoy.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solicitudes cerca de ti -->
+  <main id="main">
+    <div class="wrap requests-section">
+      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem;">Solicitudes cerca de ti</h2>
+      <div class="requests-grid">
+        <article class="request-card">
+          <div class="request-header">
+            <span class="request-district-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+              Zona Centro
+            </span>
+            <span class="tag tag-hot">Urgente</span>
+          </div>
+          <h3 class="request-title">Reparación urgente de tubería colapsada</h3>
+          <p class="request-desc">Se requiere un técnico especialista en gasfitería para solucionar una fuga imprevista en cocina residencial.</p>
+          <div class="request-meta-grid">
+            <div class="request-meta-item"><dt>Publicado</dt><dd>Hace 30 min</dd></div>
+            <div class="request-meta-item"><dt>Oficio</dt><dd>Gasfitería</dd></div>
+          </div>
+          <div class="request-footer">
+            <span class="request-proposals-count">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              0 propuestas
+            </span>
+            <a href="bolsa-solicitudes.html" class="btn-proposal">Responder</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Próximo servicio -->
+    <div class="wrap requests-section">
+      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem;">Próximo servicio</h2>
+      <article class="request-card" style="max-width: 520px;">
+        <div class="request-header">
+          <span class="request-district-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+            Zona Centro
+          </span>
+          <span class="tag tag-ok">Confirmado</span>
+        </div>
+        <h3 class="request-title">Instalación de tablero eléctrico</h3>
+        <p class="request-desc">Cliente: Empresa Comercial S.A.</p>
+        <div class="request-meta-grid">
+          <div class="request-meta-item"><dt>Horario</dt><dd>3:00 PM · hoy</dd></div>
+          <div class="request-meta-item"><dt>Modalidad</dt><dd>Instalación</dd></div>
+        </div>
+        <div class="request-footer">
+          <a href="mis-trabajos.html" class="button">Ver todos mis trabajos</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-wrap">
+      <a class="brand" href="Index.html" aria-label="Servilink, inicio">
+        <span class="brand-icon" aria-hidden="true"></span>
+        Servilink
+      </a>
+      <p>Prototipo académico · Ingeniería Web · Proyecto Semestral · Universidad Continental</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const btnOn = document.getElementById('avail-on');
+      const btnOff = document.getElementById('avail-off');
+      const status = document.querySelector('.avail-status');
+
+      function setActive(on) {
+        if (on) {
+          btnOn.classList.add('is-on');
+          btnOn.setAttribute('aria-pressed', 'true');
+          btnOff.classList.remove('is-on');
+          btnOff.setAttribute('aria-pressed', 'false');
+          status.classList.remove('is-paused');
+        } else {
+          btnOff.classList.add('is-on');
+          btnOff.setAttribute('aria-pressed', 'true');
+          btnOn.classList.remove('is-on');
+          btnOn.setAttribute('aria-pressed', 'false');
+          status.classList.add('is-paused');
+        }
+      }
+
+      btnOn.addEventListener('click', () => setActive(true));
+      btnOff.addEventListener('click', () => setActive(false));
+
+      // Keyboard support
+      btnOn.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); btnOff.focus(); }
+      });
+      btnOff.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); btnOn.focus(); }
+      });
+    })();
+  </script>
+</body>
+</html>
