@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Bolsa de Trabajos de Servilink: encuentra solicitudes de servicio técnico en Cusco Metropolitano, filtra por distrito y envía tus propuestas técnicas de inmediato.">
+  <title>Bolsa de Trabajos · Servilink (Cusco)</title>
+
+  <!-- Google Fonts: Bricolage Grotesque & Figtree -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos del Panel de Trabajador (Autónomo, con tokens Servilink y tipografía directa) -->
+  <link rel="stylesheet" href="trabajador-panel.css">
+</head>
+<body>
+  <!-- Salto rápido para accesibilidad de teclado -->
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <!-- Header solicitado por el usuario -->
+  <header class="top">
+    <div class="wrap">
+
+      <!-- Logo -->
+      <a class="logo" href="Index.html">
+        <i aria-hidden="true"></i>
+        Servilink
+        <small>Panel técnico</small>
+      </a>
+
+      <!-- Navegación -->
+      <nav aria-label="Principal">
+        <a href="inicio trabajador.html">Inicio</a>
+        <a href="bolsa-solicitudes.html" aria-current="page">Bolsa de Trabajos</a>
+        <a href="mis-trabajos.html">Mis Trabajos</a>
+        <a href="mi perfil.html">Mi Perfil</a>
+      </nav>
+
+      <!-- Usuario -->
+      <div class="me">
+        <span class="av" aria-hidden="true">WQ</span>
+
+        <div>
+          <span>Bienvenido</span>
+          <b>Wilber Quispe</b>
+        </div>
+      </div>
+
+      <!-- Cerrar Sesión -->
+      <a class="logout-btn" href="Index.html" title="Cerrar sesión">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        <span>Cerrar sesión</span>
+      </a>
+
+    </div>
+  </header>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero de la Bolsa de Solicitudes -->
+  <header class="panel-hero">
+    <div class="wrap panel-hero-inner">
+      <span class="panel-hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        Panel de Prestador de Servicios · Cusco
+      </span>
+      <h1>Encuentra <span class="marker">trabajo</span> cerca de ti</h1>
+      <p class="panel-hero-lead">
+        Explora las necesidades y requerimientos técnicos publicados por vecinos de Cusco Metropolitano. Filtra por tu oficio o distrito, postula con tu disponibilidad y coordina la atención directa.
+      </p>
+    </div>
+  </header>
+
+  <!-- Barra de Filtros Sticky (Sin manejo de dinero) -->
+  <section class="filters-bar" aria-label="Filtros de búsqueda de solicitudes">
+    <div class="wrap filters-wrapper">
+      <form id="filters-form" class="filters-form" role="search" onsubmit="return false;">
+        <!-- Búsqueda por texto -->
+        <div class="filter-group">
+          <label for="filter-search" class="filter-label">Buscar por detalle</label>
+          <input 
+            type="search" 
+            id="filter-search" 
+            class="filter-input" 
+            placeholder="Ej. fuga de agua, terma solar, breaker..."
+            autocomplete="off"
+          >
+        </div>
+
+        <!-- Categoría / Oficio -->
+        <div class="filter-group">
+          <label for="filter-category" class="filter-label">Oficio / Área</label>
+          <select id="filter-category" class="filter-select">
+            <option value="">Todos los oficios</option>
+            <option value="gasfiteria">Gasfitería</option>
+            <option value="electricidad">Electricidad</option>
+            <option value="carpinteria">Carpintería</option>
+            <option value="pintura">Pintura</option>
+            <option value="limpieza">Limpieza</option>
+            <option value="cerrajeria">Cerrajería</option>
+          </select>
+        </div>
+
+        <!-- Distrito -->
+        <div class="filter-group">
+          <label for="filter-district" class="filter-label">Distrito</label>
+          <select id="filter-district" class="filter-select">
+            <option value="">Todos los distritos</option>
+            <option value="cusco">Cusco</option>
+            <option value="wanchaq">Wanchaq</option>
+            <option value="san-sebastian">San Sebastián</option>
+            <option value="san-jeronimo">San Jerónimo</option>
+            <option value="santiago">Santiago</option>
+          </select>
+        </div>
+
+        <!-- Urgencia -->
+        <div class="filter-group">
+          <label for="filter-urgency" class="filter-label">Urgencia</label>
+          <select id="filter-urgency" class="filter-select">
+            <option value="">Todas las prioridades</option>
+            <option value="urgente">Urgente (Atención inmediata)</option>
+            <option value="esta-semana">Esta semana</option>
+            <option value="planificado">Planificado</option>
+          </select>
+        </div>
+
+        <!-- Modalidad de servicio -->
+        <div class="filter-group">
+          <label for="filter-modality" class="filter-label">Tipo de servicio</label>
+          <select id="filter-modality" class="filter-select">
+            <option value="">Todos los tipos</option>
+            <option value="Reparación">Reparación</option>
+            <option value="Instalación">Instalación</option>
+            <option value="Mantenimiento">Mantenimiento</option>
+            <option value="Limpieza">Limpieza</option>
+          </select>
+        </div>
+
+        <!-- Botón Limpiar -->
+        <div class="filter-actions">
+          <button type="button" id="btn-clear-filters" class="button button-secondary btn-clear">
+            Limpiar filtros
+          </button>
+        </div>
+      </form>
+
+      <!-- Resumen y contador con accesibilidad aria-live -->
+      <div class="filters-status-bar">
+        <div id="filter-status-count" class="filters-counter" aria-live="polite">
+          Cargando solicitudes...
+        </div>
+        <div class="applied-tags" aria-hidden="true">
+          <span style="font-size: 0.8rem; color: var(--muted);">✓ Cusco Metropolitano · Coordinación técnica directa</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenido Principal: Grid de Solicitudes -->
+  <main id="contenido" class="wrap requests-section">
+    <h2 class="visually-hidden">Lista de solicitudes de clientes en Cusco</h2>
+
+    <!-- Grid poblado dinámicamente con JavaScript -->
+    <div id="requests-grid" class="requests-grid">
+      <!-- Se inyectan las tarjetas con JS -->
+    </div>
+
+    <!-- Estado vacío cuando los filtros no devuelven nada -->
+    <div id="empty-state" class="empty-state" hidden>
+      <div class="empty-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </div>
+      <h3>No se encontraron solicitudes</h3>
+      <p>Ninguna solicitud coincide con los criterios seleccionados. Prueba cambiando el oficio, distrito o tipo de servicio.</p>
+      <button type="button" id="btn-reset-empty" class="button">
+        Restablecer todos los filtros
+      </button>
+    </div>
+  </main>
+
+  <!-- Modal Accesible para Enviar Propuesta Técnica (<dialog>) -->
+  <dialog id="modal-proposal" class="modal-dialog" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="tag tag-ok" style="margin-bottom: 0.4rem;">Postulación de Servicio</span>
+          <h3 id="modal-title">Enviar Propuesta Técnica</h3>
+        </div>
+        <button type="button" id="modal-close-btn" class="modal-close-btn" aria-label="Cerrar modal de propuesta">
+          &times;
+        </button>
+      </div>
+
+      <!-- Resumen de la solicitud seleccionada -->
+      <div class="modal-request-summary" aria-label="Resumen de la solicitud">
+        <div id="modal-req-title" class="modal-summary-title">Título de la solicitud</div>
+        <div class="modal-summary-chips">
+          <span id="modal-req-district" class="modal-summary-chip">Distrito</span>
+          <span id="modal-req-category" class="modal-summary-chip">Oficio</span>
+          <span id="modal-req-modality" class="modal-summary-chip">Modalidad</span>
+        </div>
+      </div>
+
+      <!-- Formulario de propuesta técnica -->
+      <form id="proposal-form" class="modal-form" method="dialog" novalidate>
+        <div class="form-row">
+          <!-- Tiempo estimado -->
+          <div class="form-group">
+            <label for="proposal-time" class="form-label">
+              Tiempo estimado de atención <span class="required" aria-hidden="true">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="proposal-time" 
+              class="form-input" 
+              placeholder="Ej. 2 horas / Medio día" 
+              required
+            >
+          </div>
+
+          <!-- Turno / Horario sugerido -->
+          <div class="form-group">
+            <label for="proposal-shift" class="form-label">
+              Turno disponible <span class="required" aria-hidden="true">*</span>
+            </label>
+            <select id="proposal-shift" class="form-select" required>
+              <option value="manana">Turno Mañana (8:00 am - 12:00 pm)</option>
+              <option value="tarde">Turno Tarde (2:00 pm - 6:00 pm)</option>
+              <option value="completo">Disponibilidad todo el día</option>
+              <option value="inmediato">Atención inmediata de emergencia</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Fecha disponible -->
+        <div class="form-group">
+          <label for="proposal-date" class="form-label">
+            Fecha propuesta de inicio <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input 
+            type="date" 
+            id="proposal-date" 
+            class="form-input" 
+            required
+          >
+        </div>
+
+        <!-- Mensaje técnico al cliente -->
+        <div class="form-group">
+          <label for="proposal-message" class="form-label">
+            Plan de trabajo y herramientas a disposición <span class="required" aria-hidden="true">*</span>
+          </label>
+          <textarea 
+            id="proposal-message" 
+            class="form-textarea" 
+            rows="3" 
+            required 
+            placeholder="Describe qué herramientas llevarás, tu experiencia y la garantía de tu trabajo técnico..."
+          ></textarea>
+        </div>
+
+        <!-- Acciones del modal -->
+        <div class="modal-actions">
+          <button type="button" id="btn-cancel-proposal" class="button button-secondary">
+            Cancelar
+          </button>
+          <button type="submit" id="btn-submit-proposal" class="button">
+            Enviar propuesta
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Contenedor accesible para toasts flotantes -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Footer general de Servilink -->
+  <footer class="site-footer">
+    <div class="wrap footer-wrap">
+      <a class="brand" href="Index.html" aria-label="Servilink, inicio">
+        <span class="brand-icon" aria-hidden="true"></span>
+        Servilink
+      </a>
+      <p>Prototipo académico · Ingeniería Web · Proyecto Semestral · Universidad Continental</p>
+    </div>
+  </footer>
+
+  <!-- Lógica y persistencia del panel de trabajador -->
+  <script src="trabajador-panel.js"></script>
+</body>
+</html>

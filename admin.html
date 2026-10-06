@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Panel de administración de Servilink: revisa y aprueba las solicitudes de trabajadores que quieren ofrecer sus servicios en Cusco Metropolitano.">
+<title>Panel de administración · Servilink</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="Index.html"><i aria-hidden="true"></i>Servilink<small>Administración</small></a>
+    <nav aria-label="Principal">
+      <a href="#resumen" aria-current="true">Resumen</a>
+      <a href="#solicitudes">Solicitudes</a>
+      <a href="#activos">Trabajadores activos</a>
+      <a href="#categorias">Categorías</a>
+    </nav>
+    <div class="me"><span class="av" aria-hidden="true">AD</span><div><span>Bienvenida</span><b>Administración</b></div></div>
+    <a class="logout" href="Index.html" title="Cerrar sesión">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      <span>Cerrar sesión</span>
+    </a>
+  </div>
+</header>
+
+<main id="contenido">
+  <section class="hero" id="resumen" aria-labelledby="t-hero">
+    <div class="wrap">
+      <div class="crumbs"><a href="login.html">Acceso</a><span aria-hidden="true">/</span><span>Administrador</span></div>
+      <h1 id="t-hero">Panel de <span class="marker">administración</span></h1>
+      <p>Revisa los datos y documentos de cada persona que quiere ofrecer servicios en Servilink y decide si entra a la plataforma en Cusco Metropolitano.</p>
+      <section class="stats" aria-label="Resumen de solicitudes">
+        <article class="stat s-plan"><span>Por revisar</span><b id="m-open">0</b><p>Pendientes o esperando información</p></article>
+        <article class="stat s-ok"><span>Aprobadas</span><b id="m-ok">0</b><p>Trabajadores admitidos</p></article>
+        <article class="stat s-hot"><span>Rechazadas</span><b id="m-no">0</b><p>No cumplen los requisitos</p></article>
+        <article class="stat s-sun"><span>Trabajadores activos</span><b id="m-act">0</b><p>Visibles para los clientes</p></article>
+      </section>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="block" id="solicitudes" aria-labelledby="t-sol">
+      <div class="head">
+        <h2 id="t-sol">Solicitudes de ingreso</h2>
+        <p>Abre una solicitud para ver sus datos, comprobar los documentos y aprobarla, rechazarla o pedir más información.</p>
+      </div>
+      <form class="bar" role="search" onsubmit="return false">
+        <div><label for="f-q">Buscar por nombre, DNI u oficio</label><input type="search" id="f-q" placeholder="Ej. Rosa, 45872316, gasfitería" autocomplete="off"></div>
+        <div><label for="f-of">Oficio</label><select id="f-of"><option value="">Todos los oficios</option></select></div>
+        <div><label for="f-es">Estado</label>
+          <select id="f-es"><option value="abiertas">Por revisar</option><option value="pendiente">Pendientes</option><option value="info">Esperando información</option><option value="aprobada">Aprobadas</option><option value="rechazada">Rechazadas</option><option value="todas">Todas</option></select></div>
+        <button type="button" class="btn btn-line" id="f-clear">Limpiar filtros</button>
+      </form>
+      <div class="tw"><table>
+        <caption id="sol-count" aria-live="polite"></caption>
+        <thead><tr><th scope="col">Postulante</th><th scope="col">Oficio</th><th scope="col">Distrito</th><th scope="col">Recibida</th><th scope="col">Documentos</th><th scope="col">Estado</th><th scope="col"><span class="vh">Acción</span></th></tr></thead>
+        <tbody id="sol-body"></tbody>
+      </table></div>
+    </section>
+
+    <section class="block" id="activos" aria-labelledby="t-act">
+      <div class="head">
+        <h2 id="t-act">Trabajadores activos</h2>
+        <p>Personas ya aprobadas. Suspende una cuenta si recibe reclamos y reactívala cuando se resuelvan.</p>
+      </div>
+      <div class="tw"><table>
+        <caption>Cuentas de trabajadores en Servilink</caption>
+        <thead><tr><th scope="col">Trabajador</th><th scope="col">Oficio</th><th scope="col">Distrito</th><th scope="col">Desde</th><th scope="col">Estado</th><th scope="col"><span class="vh">Acción</span></th></tr></thead>
+        <tbody id="act-body"></tbody>
+      </table></div>
+    </section>
+
+    <section class="block" id="categorias" aria-labelledby="t-cat">
+      <div class="head">
+        <h2 id="t-cat">Categorías de oficios</h2>
+        <p>Las categorías desactivadas no aparecen al registrar nuevas solicitudes de trabajadores.</p>
+      </div>
+      <div class="cats" id="cats" role="group" aria-label="Categorías habilitadas"></div>
+    </section>
+  </div>
+</main>
+
+<dialog id="dlg" aria-labelledby="d-name">
+  <div class="dh">
+    <div class="who"><span class="av" id="d-av" aria-hidden="true"></span><div><h3 id="d-name"></h3><small id="d-sub" style="color:var(--muted)"></small></div></div>
+    <div style="display:flex;gap:.6rem;align-items:center"><span class="tag" id="d-tag"></span><button class="x" id="d-x" aria-label="Cerrar">&times;</button></div>
+  </div>
+  <div class="db" id="d-body"></div>
+</dialog>
+<div id="toasts" aria-live="polite" aria-atomic="true"></div>
+
+<footer>
+  <div class="wrap fw">
+    <a class="logo" href="Index.html"><i aria-hidden="true"></i>Servilink</a>
+    <nav class="fl" aria-label="Enlaces del sitio">
+      <a href="Index.html">Inicio público</a>
+      <a href="trabajadores.html">Trabajadores</a>
+      <a href="registro de formulario.html">Solicitar servicio</a>
+      <a href="inicio trabajador.html">Panel del trabajador</a>
+      <a href="login.html">Iniciar sesión</a>
+    </nav>
+    <p>Prototipo académico · Ingeniería Web · Proyecto Semestral · Universidad Continental</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY='servilink_admin_v1';
+  var OFICIOS=['Gasfitería','Electricidad','Carpintería','Pintura','Limpieza','Cerrajería','Soporte tecnológico'];
+  var SEED={
+    sol:[
+      {id:'S-1048',nombre:'Rosa Mamani Condori',dni:'45872316',cel:'984112233',correo:'rosa.mamani@gmail.com',oficio:'Electricidad',exp:6,distrito:'Wanchaq',zonas:'Wanchaq, Cusco',fecha:'2026-10-05',desc:'Instalaciones eléctricas residenciales, tableros y cambio de cableado. Atiendo emergencias.',docs:{dni:1,foto:1,antec:1,cert:1,trabajos:3},ref:'Ing. Carlos Huallpa · 984 556 120',estado:'pendiente'},
+      {id:'S-1047',nombre:'Luis Ccahuana Puma',dni:'41230987',cel:'973445566',correo:'luis.ccahuana@outlook.com',oficio:'Gasfitería',exp:3,distrito:'San Sebastián',zonas:'San Sebastián, San Jerónimo',fecha:'2026-10-04',desc:'Detección de fugas, instalación de termas y mantenimiento de redes de agua.',docs:{dni:1,foto:1,antec:0,cert:0,trabajos:1},ref:'Sra. Elena Torres · 962 118 240',estado:'pendiente'},
+      {id:'S-1045',nombre:'Mónica Quispe Huamán',dni:'47561203',cel:'951889900',correo:'monica.quispe@gmail.com',oficio:'Limpieza',exp:4,distrito:'Cusco',zonas:'Cusco, Santiago',fecha:'2026-10-03',desc:'Limpieza profunda de casas, oficinas y locales después de obra.',docs:{dni:1,foto:1,antec:1,cert:0,trabajos:2},ref:'Hostal Inti Wasi · 084 233 410',estado:'info',nota:'Se pidió un segundo contacto de referencia.'},
+      {id:'S-1043',nombre:'Jorge Apaza Mendoza',dni:'43309875',cel:'984771122',correo:'jorge.apaza@gmail.com',oficio:'Carpintería',exp:10,distrito:'Santiago',zonas:'Santiago, Wanchaq, Cusco',fecha:'2026-10-02',desc:'Muebles a medida, puertas, closets y reparación de techos de madera.',docs:{dni:1,foto:1,antec:1,cert:1,trabajos:5},ref:'Arq. Paola Ríos · 987 450 321',estado:'pendiente'},
+      {id:'S-1040',nombre:'Diego Flores Sullca',dni:'72189455',cel:'932100456',correo:'diego.flores@gmail.com',oficio:'Soporte tecnológico',exp:2,distrito:'San Jerónimo',zonas:'San Jerónimo',fecha:'2026-09-29',desc:'Mantenimiento de PC y redes WiFi para hogares.',docs:{dni:0,foto:1,antec:0,cert:0,trabajos:0},ref:'Sin referencia',estado:'rechazada',nota:'Documentos de identidad ilegibles y sin antecedentes.'}
+    ],
+    act:[
+      {id:'T-001',nombre:'Wilber Quispe Huamán',oficio:'Gasfitería',distrito:'Cusco',desde:'2026-03-12',estado:'activo'},
+      {id:'T-002',nombre:'Juan Pérez',oficio:'Gasfitería',distrito:'Cusco',desde:'2026-04-20',estado:'activo'},
+      {id:'T-003',nombre:'María Gómez',oficio:'Soporte tecnológico',distrito:'Santiago',desde:'2026-05-08',estado:'activo'}
+    ],
+    cats:OFICIOS.map(function(o){return{n:o,on:true}})
+  };
+  var S;
+  try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+  if(!S||!S.sol)S=JSON.parse(JSON.stringify(SEED));
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+  var $=function(i){return document.getElementById(i)};
+  function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function ini(n){return n.split(' ').slice(0,2).map(function(w){return w[0]}).join('').toUpperCase()}
+  function fd(d){return new Date(d+'T12:00:00').toLocaleDateString('es-PE',{day:'2-digit',month:'short',year:'numeric'})}
+  var LBL={pendiente:'Pendiente',info:'Esperando información',aprobada:'Aprobada',rechazada:'Rechazada',activo:'Activo',suspendido:'Suspendido'};
+  function tag(e){return '<span class="tag t-'+e+'">'+LBL[e]+'</span>'}
+  function toast(m){var t=document.createElement('div');t.className='toast';t.textContent=m;$('toasts').appendChild(t);setTimeout(function(){t.remove()},3500)}
+  function reqMissing(s){var m=[];if(!s.docs.dni)m.push('DNI');if(!s.docs.foto)m.push('foto');if(!s.docs.antec)m.push('antecedentes');return m}
+
+  // Filtros
+  S.cats.forEach(function(c){var o=document.createElement('option');o.value=c.n;o.textContent=c.n;$('f-of').appendChild(o)});
+
+  function render(){
+    var q=$('f-q').value.trim().toLowerCase(),of=$('f-of').value,es=$('f-es').value;
+    var list=S.sol.filter(function(s){
+      if(of&&s.oficio!==of)return false;
+      if(es==='abiertas'&&!(s.estado==='pendiente'||s.estado==='info'))return false;
+      if(es!=='abiertas'&&es!=='todas'&&s.estado!==es)return false;
+      return !q||(s.nombre+' '+s.dni+' '+s.oficio).toLowerCase().indexOf(q)>-1;
+    });
+    $('sol-count').textContent=list.length+(list.length===1?' solicitud encontrada':' solicitudes encontradas');
+    $('sol-body').innerHTML=list.length?list.map(function(s){
+      var m=reqMissing(s);
+      return '<tr><td><div class="who"><span class="av" aria-hidden="true">'+ini(s.nombre)+'</span><div>'+esc(s.nombre)+'<small>DNI '+esc(s.dni)+'</small></div></div></td><td>'+esc(s.oficio)+'</td><td>'+esc(s.distrito)+'</td><td>'+fd(s.fecha)+'</td><td>'+(m.length?'<span class="miss">Falta: '+m.join(', ')+'</span>':'<span style="color:var(--ok);font-weight:600">Completos</span>')+'</td><td>'+tag(s.estado)+'</td><td><button class="btn btn-sm" data-open="'+s.id+'">Revisar</button></td></tr>';
+    }).join(''):'<tr><td colspan="7" class="empty">No hay solicitudes con estos filtros. Prueba con otro estado u oficio.</td></tr>';
+    $('act-body').innerHTML=S.act.map(function(a){
+      return '<tr><td><div class="who"><span class="av" aria-hidden="true">'+ini(a.nombre)+'</span>'+esc(a.nombre)+'</div></td><td>'+esc(a.oficio)+'</td><td>'+esc(a.distrito)+'</td><td>'+fd(a.desde)+'</td><td>'+tag(a.estado)+'</td><td><button class="btn btn-sm '+(a.estado==='activo'?'btn-hot':'btn-line')+'" data-tg="'+a.id+'">'+(a.estado==='activo'?'Suspender':'Reactivar')+'</button></td></tr>';
+    }).join('');
+    $('m-open').textContent=S.sol.filter(function(s){return s.estado==='pendiente'||s.estado==='info'}).length;
+    $('m-ok').textContent=S.sol.filter(function(s){return s.estado==='aprobada'}).length;
+    $('m-no').textContent=S.sol.filter(function(s){return s.estado==='rechazada'}).length;
+    $('m-act').textContent=S.act.filter(function(a){return a.estado==='activo'}).length;
+    $('cats').innerHTML=S.cats.map(function(c,i){return '<button type="button" class="cat" data-cat="'+i+'" aria-pressed="'+c.on+'">'+esc(c.n)+'</button>'}).join('');
+  }
+
+  // Detalle
+  var cur=null,dlg=$('dlg');
+  function docLi(n,ok,opt){return '<li><span>'+n+'</span>'+(ok?'<span class="tag t-aprobada">Recibido</span>':(opt?'<span class="tag t-info">Opcional</span>':'<span class="tag t-rechazada">Falta</span>'))+'</li>'}
+  function open(id){
+    cur=S.sol.filter(function(s){return s.id===id})[0];var s=cur;
+    $('d-av').textContent=ini(s.nombre);$('d-name').textContent=s.nombre;
+    $('d-sub').textContent='Solicitud '+s.id+' · recibida el '+fd(s.fecha);
+    $('d-tag').className='tag t-'+s.estado;$('d-tag').textContent=LBL[s.estado];
+    var h='<div><h4>Datos del postulante</h4><dl class="dl">'+
+      [['Nombre completo',s.nombre],['DNI',s.dni],['Celular / WhatsApp','+51 '+s.cel],['Correo',s.correo],['Oficio',s.oficio],['Experiencia',s.exp+' años'],['Distrito base',s.distrito],['Zonas de atención',s.zonas],['Referencia',s.ref]].map(function(r){return '<div><dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd></div>'}).join('')+
+      '</dl><p class="desc">'+esc(s.desc)+'</p></div>'+
+      '<div><h4>Documentos entregados</h4><ul class="docs">'+docLi('DNI (anverso y reverso)',s.docs.dni)+docLi('Foto de perfil',s.docs.foto)+docLi('Certificado de antecedentes policiales',s.docs.antec)+docLi('Certificado o constancia del oficio',s.docs.cert,1)+docLi('Fotos de trabajos anteriores ('+s.docs.trabajos+')',s.docs.trabajos>0,1)+'</ul>';
+    if(s.estado==='aprobada'||s.estado==='rechazada'){
+      h+='</div><div class="res" style="--c:'+(s.estado==='aprobada'?'var(--ok)':'var(--hot)')+'"><strong>'+(s.estado==='aprobada'?'Solicitud aprobada':'Solicitud rechazada')+'</strong><p class="note" style="margin:.3rem 0 0">'+esc(s.nota||'Sin observaciones.')+'</p><div class="acts"><button class="btn btn-line" id="a-reopen">Reabrir solicitud</button></div></div>';
+    }else{
+      h+='<h4 style="margin-top:1.2rem">Verificación del administrador</h4><div class="chk">'+
+        ['La identidad coincide con el DNI y la foto','El celular responde y es del postulante','La experiencia y la referencia son creíbles','No registra antecedentes que impidan trabajar'].map(function(t,i){return '<label><input type="checkbox" class="vk" data-i="'+i+'">'+t+'</label>'}).join('')+'</div></div>'+
+        '<div class="dec"><div class="row"><div><label for="d-mot">Motivo (si rechaza)</label><select id="d-mot"><option value="">Selecciona un motivo</option><option>Documentos ilegibles o incompletos</option><option>Identidad no verificable</option><option>Antecedentes no permitidos</option><option>Oficio fuera de las categorías</option><option>Fuera de Cusco Metropolitano</option></select></div><div><label for="d-nota">Nota para el postulante</label><textarea id="d-nota" placeholder="Explica qué debe corregir o da la bienvenida a Servilink...">'+esc(s.nota||'')+'</textarea></div></div>'+
+        '<p class="note" id="d-help"></p><div class="acts"><button class="btn btn-line" id="a-info">Pedir más información</button><button class="btn btn-hot" id="a-no">Rechazar</button><button class="btn btn-ok" id="a-ok" disabled>Aprobar trabajador</button></div></div>';
+    }
+    $('d-body').innerHTML=h;
+    if($('a-ok'))help();
+    if(!dlg.open)dlg.showModal();
+  }
+  function help(){
+    var all=[].slice.call(document.querySelectorAll('.vk')).every(function(c){return c.checked});
+    var m=reqMissing(cur);
+    $('a-ok').disabled=!(all&&!m.length);
+    $('d-help').textContent=m.length?'No se puede aprobar: falta '+m.join(', ')+'. Pide más información al postulante.':(all?'Todo verificado. Ya puedes aprobar.':'Marca las cuatro verificaciones para habilitar la aprobación.');
+  }
+  function close(){dlg.close();cur=null}
+  function done(msg){save();render();close();toast(msg)}
+
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('button');if(!t)return;
+    if(t.dataset.open)return open(t.dataset.open);
+    if(t.dataset.tg){var a=S.act.filter(function(x){return x.id===t.dataset.tg})[0];a.estado=a.estado==='activo'?'suspendido':'activo';save();render();return toast(a.nombre+(a.estado==='activo'?' fue reactivado.':' fue suspendido.'))}
+    if(t.dataset.cat){var c=S.cats[t.dataset.cat];c.on=!c.on;save();render();return toast('Categoría '+c.n+(c.on?' activada.':' desactivada.'))}
+    if(t.id==='a-ok'){cur.estado='aprobada';cur.nota=$('d-nota').value.trim();S.act.unshift({id:'T-'+cur.id.slice(2),nombre:cur.nombre,oficio:cur.oficio,distrito:cur.distrito,desde:new Date().toISOString().slice(0,10),estado:'activo'});return done(cur.nombre+' fue aprobado y ya es trabajador activo.')}
+    if(t.id==='a-no'){var m=$('d-mot').value;if(!m){$('d-help').textContent='Selecciona un motivo para rechazar la solicitud.';return $('d-mot').focus()}cur.estado='rechazada';cur.nota=m+($('d-nota').value.trim()?'. '+$('d-nota').value.trim():'');return done('Solicitud de '+cur.nombre+' rechazada.')}
+    if(t.id==='a-info'){var n=$('d-nota').value.trim();if(!n){$('d-help').textContent='Escribe en la nota qué información necesitas.';return $('d-nota').focus()}cur.estado='info';cur.nota=n;return done('Se pidió más información a '+cur.nombre+'.')}
+    if(t.id==='a-reopen'){S.act=S.act.filter(function(x){return x.id!=='T-'+cur.id.slice(2)});cur.estado='pendiente';save();render();var id=cur.id;return open(id)}
+    if(t.id==='d-x')return close();
+    if(t.id==='f-clear'){$('f-q').value='';$('f-of').value='';$('f-es').value='abiertas';render()}
+  });
+  document.addEventListener('change',function(e){if(e.target.classList.contains('vk'))help()});
+  ['f-q','f-of','f-es'].forEach(function(i){$(i).addEventListener('input',render)});
+  dlg.addEventListener('click',function(e){if(e.target===dlg)close()});
+
+  // Navegación activa
+  var links=[].slice.call(document.querySelectorAll('.top nav a'));
+  links.forEach(function(l){l.addEventListener('click',function(){links.forEach(function(x){x.removeAttribute('aria-current')});l.setAttribute('aria-current','true')})});
+  render();
+})();
+</script>
+</body>
+</html>
